@@ -24,8 +24,7 @@ let shows = [
 app.get('/', (req, res) => {
     Show.find()
     .then(shows => {
-        res.render('shows-index', { shows: shows });
-    })
+        res.render('shows-index', { shows: shows });    })
 
 })
 
@@ -35,10 +34,18 @@ app.get('/shows/new', (req, res) => {
 
 app.post('/shows', (req, res) => {
   Show.create(req.body).then((show) => {
-      res.redirect('/')
+      res.redirect(`/shows/${show._id}`)
   }).catch((err) => {
       console.log(err.message)
   })
+})
+
+app.get('/shows/:id', (req, res) => {
+    Show.findById(req.params.id).then((show) => {
+        res.render('shows-show', {show: show})
+    }).catch((err) => {
+        console.log(err.message)
+    })
 })
 
 app.listen(3000, () => {
