@@ -71,7 +71,14 @@ app.put('/shows/:id', (req, res) => {
             console.log(err.message)
         })
 })
-// DELETE
+// DESTROY
+app.delete('/shows/:id', (req, res) => {
+    Show.findByIdAndRemove(req.params.id).then((show) => {
+        res.redirect('/')
+    }).catch((err) => {
+        console.log(err.message)
+    })
+})
 
 app.listen(3000, () => {
   console.log('App listening on port 3000!')

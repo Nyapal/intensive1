@@ -4,3 +4,7 @@
 <h2>{{show.genre}}</h2>
 
 <p><a href="/shows/{{show._id}}/edit">Edit</a></p>
+<!-- Delete button -->
+<p><form method="POST" action="/shows/{{show._id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+</form></p>
