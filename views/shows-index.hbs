@@ -1,8 +1,10 @@
-<h1> Shows </h1>
+<h1 class="text-center"> Shows </h1>
 
-<a href="/shows/new">Add Show</a>
-
-{{#each shows}}
-    <h2><a href="/shows/{{this._id}}">{{this.title}}</a></h2>
-    <small>{{this.genre}}</small>
-{{/each}}
+<div class="row">
+    {{#each shows}}
+    <div class="col-sm-3">
+      <h2><a href="/shows/{{this._id}}">{{this.title}}</a></h2>
+      <small>{{this.genre}}</small>
+    </div>
+  {{/each}}
+</div>

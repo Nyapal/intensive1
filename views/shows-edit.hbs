@@ -1,6 +1,12 @@
-<form method="POST" action="/shows/{{show._id}}?_method=PUT">
-    {{> show-form}}
-        <p>
-            <button type="submit">Save Show</button>
-        </p>
-</form>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+      <form method="POST" action="/shows/{{show._id}}?_method=PUT">
+
+          {{> show-form}}
+      <!-- BUTTON -->
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Save Show</button>
+      </div>
+    </form>
+  </div>
+</div>
