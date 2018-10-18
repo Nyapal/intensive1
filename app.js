@@ -2,10 +2,12 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 mongoose.connect('mongodb://localhost/kiki');
 
 app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', 'hbs');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const Show = mongoose.model('Show', {
   title: String,
@@ -19,22 +21,24 @@ let shows = [
   { title: "RuPaul's Drag Race", genre: "Reality TV"}
 ]
 
-// app.get('/', (req, res) => {
-//   Review.find()
-//     .then(reviews => {
-//         res.render('reviews-index', { reviews: reviews });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     })
-// })
-
 app.get('/', (req, res) => {
     Show.find()
     .then(shows => {
         res.render('shows-index', { shows: shows });
     })
 
+})
+
+app.get('/shows/new', (req, res) => {
+    res.render('shows-new', {})
+})
+
+app.post('/shows', (req, res) => {
+  Show.create(req.body).then((show) => {
+      res.redirect('/')
+  }).catch((err) => {
+      console.log(err.message)
+  })
 })
 
 app.listen(3000, () => {
