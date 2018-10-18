@@ -1,16 +1,7 @@
 <form method="POST" action="/shows">
-    <fieldset>
-        <legend> New Show </legend>
-        <p>
-            <label for="title">Title</label><br>
-            <input type="text" name="title" />
-        </p>
-        <p>
-            <label for="genre">Genre</label><br>
-            <input type="text" name="genre" />
-        </p>
-        <p>
-            <button> Add Show </button>
-        </p>
-    </fieldset>
+    {{> show-form}}
+
+    <p>
+        <button type="submit">Add Show</button>
+    </p>
 </form>
