@@ -23,8 +23,10 @@ function shows (app) {
     })
     // SHOW
     app.get('/shows/:id', (req, res) => {
-        Show.findById(req.params.id).then((show) => {
-            res.render('shows-show', {show: show})
+        Show.findById(req.params.id).then(show => {
+            Comment.find({ showId: req.params.id}).then(comments => {
+                res.render('shows-show', {show: show, comments: comments})
+            })
         }).catch((err) => {
             console.log(err.message)
         })
