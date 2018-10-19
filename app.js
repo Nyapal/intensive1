@@ -9,7 +9,6 @@ const comments = require('./controllers/comments')
 const Comment = require('./models/comment.js')
 const Show = require('./models/show.js')
 const port = process.env.PORT || 3000;
-app.listen(port);
 
 mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/kiki');
 
