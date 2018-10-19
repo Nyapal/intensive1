@@ -8,6 +8,13 @@ function comments (app) {
             console.log(err.message)
         })
     })
+    app.delete('/shows/comments/:id', (req, res) => {
+        Comment.findByIdAndRemove(req.params.id).then((comment) => {
+            res.redirect(`/shows/${comment.showId}`)
+        }).catch((err) => {
+            console.log(err.message)
+        })
+    })
 }
 
 module.exports = comments;
