@@ -1,4 +1,5 @@
 const Show = require('../models/show.js')
+const Comment = require('../models/comment.js')
 function shows (app) {
 
     // INDEX
@@ -36,12 +37,13 @@ function shows (app) {
     })
     // UPDATE
     app.put('/shows/:id', (req, res) => {
-        Show.findByIdAndUpdate(req.params.id, req.body)
-            .then(show => {
-                res.redirect(`/shows/${show._id}`)
-            }).catch(err => {
-                console.log(err.message)
+        Show.findById(req.params.id).then(show => {
+            Comment.find({ showId: req.params.id}).then(comments => {
+                res.render('shows-show', {show: show, comments: comments})
             })
+        }).catch((err) => {
+            console.log(err.message)
+        })
     })
     // DESTROY
     app.delete('/shows/:id', (req, res) => {
