@@ -8,8 +8,10 @@ const shows = require('./controllers/shows')
 const comments = require('./controllers/comments')
 const Comment = require('./models/comment.js')
 const Show = require('./models/show.js')
+const port = process.env.PORT || 3000;
+app.listen(port);
 
-mongoose.connect('mongodb://localhost/kiki');
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/kiki');
 
 app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', 'hbs');
@@ -19,6 +21,6 @@ app.use(methodOverride('_method'))
 shows(app)
 comments(app)
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('App listening on port 3000!')
 })
